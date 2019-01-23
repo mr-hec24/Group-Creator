@@ -1,7 +1,11 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainMenu
 	{
+		static ArrayList<Student> studentRoster= new ArrayList<Student>();
 		public static void main(String[] args)
 			{
 				greeting();
@@ -27,15 +31,39 @@ public class MainMenu
 			System.out.println(" ");
 		}
 		
+		public static void fillArrayList() throws IOException
+		{
+			Scanner nameRoster = new Scanner(new File("NameRoster.txt"));
+			
+			int i = 0;
+			while (nameRoster.hasNextLine())
+				{
+					String line = nameRoster.nextLine();
+					String[] names = line.split(" ");
+					studentRoster.add(new Student(names[0], names[1]));
+					System.out.println(studentRoster.get(i).getLastName());
+					i++;
+				}
+		}
+		
 		public static void optionsMenu()
 		{
 			boolean choosing = true;
 			while (choosing)
 				{
-					System.out.println("[1] Generate New Groups");
-					System.out.println("[2] Input Previous Group(s)");
-					System.out.println("[3] Change Name Roster");
-					System.out.println("[4] Leave");
+					String[] options = {"[1] Generate New Groups","[2] Input Previous Group(s)","[3] Leave"};
+					for (String o: options)
+						{
+							try
+								{
+									Thread.sleep(300);
+									System.out.println(o);
+								} 
+							catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+						}
 					Scanner userInput = new Scanner(System.in);
 					int userChoice = userInput.nextInt();
 					
@@ -43,21 +71,18 @@ public class MainMenu
 					{
 						case 1:
 								{
-									choosing = false;
+									
 									break;
 								}
 						case 2:
 								{
-									choosing = false;
+									
 									break;
 								}
 						case 3:
 								{
+									System.out.println("Alright then. Good-Bye");
 									choosing = false;
-									break;
-								}
-						case 4:
-								{
 									break;
 								}
 						default:
