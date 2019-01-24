@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MainMenu
 	{
 		static ArrayList<Student> studentRoster= new ArrayList<Student>();
-		public static void main(String[] args)
+		public static void main(String[] args) throws IOException
 			{
 				greeting();
 				optionsMenu();
@@ -31,7 +31,7 @@ public class MainMenu
 			System.out.println(" ");
 		}
 		
-		public static void fillArrayList() throws IOException
+		public static ArrayList<Student> fillArrayList() throws IOException
 		{
 			Scanner nameRoster = new Scanner(new File("NameRoster.txt"));
 			
@@ -41,12 +41,13 @@ public class MainMenu
 					String line = nameRoster.nextLine();
 					String[] names = line.split(" ");
 					studentRoster.add(new Student(names[0], names[1]));
-					System.out.println(studentRoster.get(i).getLastName());
 					i++;
 				}
+			
+			return studentRoster;
 		}
 		
-		public static void optionsMenu()
+		public static void optionsMenu() throws IOException
 		{
 			boolean choosing = true;
 			while (choosing)
@@ -71,7 +72,7 @@ public class MainMenu
 					{
 						case 1:
 								{
-									
+									CreateGroups.createGroups();
 									break;
 								}
 						case 2:

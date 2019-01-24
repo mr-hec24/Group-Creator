@@ -5,6 +5,7 @@ public class Student
 		private String firstName;
 		private String lastName;
 		private ArrayList<String> previousPartners;
+		private boolean alreadyInGroup = false;
 		
 		public Student(String f, String l, ArrayList<String> p)
 		{
@@ -48,6 +49,16 @@ public class Student
 		public void setPreviousPartners(ArrayList<String> previousPartners)
 			{
 				this.previousPartners = previousPartners;
+			}
+
+		public boolean isAlreadyInGroup()
+			{
+				return alreadyInGroup;
+			}
+
+		public void setAlreadyInGroup(boolean alreadyInGroup)
+			{
+				this.alreadyInGroup = alreadyInGroup;
 			}
 		
 		
