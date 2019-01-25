@@ -33,6 +33,7 @@ public class CreateGroups
 			
 			int groupNumber = 1;
 			int numberOfStudentsAlreadyInGroups = 0;
+			
 			// This whole for-each loop is in charge of actually assigning groups
 			for (Student[] group: groups)
 				{
@@ -41,29 +42,37 @@ public class CreateGroups
 					// This for-each loop makes sure the remaining students are included
 					if (remainingStudents > 0)
 						{
+							int num = 0;
 							group = new Student[sizeOfGroups + 1];
 							remainingStudents--;
+							int temp = numberOfStudentsAlreadyInGroups;
 							
-							for (int i = numberOfStudentsAlreadyInGroups; i < group.length; i++)
+							for (int i = numberOfStudentsAlreadyInGroups; i < temp + group.length; i++)
 								{
-									group[i] = studentRoster.get(i);
-									System.out.println(group[i].getFirstName());
+									group[num] = studentRoster.get(i);
+									System.out.println(i + 1 + ") " + group[num].getFirstName());
 									numberOfStudentsAlreadyInGroups++;
+									num++;
 								}
+							
+							fillInPreviousPartnerArray(group);
 						}
 					
 					// This just creates the regular groups
 					else
 						{
+							int num = 0;
 							group = new Student[sizeOfGroups];
 							remainingStudents--;
+							int temp = numberOfStudentsAlreadyInGroups;
 							
 							
-							for (int i = numberOfStudentsAlreadyInGroups; i < group.length; i++)
+							for (int i = numberOfStudentsAlreadyInGroups; i < temp + group.length; i++)
 								{
-									group[i] = studentRoster.get(i);
-									System.out.println(group[i].getFirstName());
+									group[num] = studentRoster.get(i);
+									System.out.println(i + 1 + ") " + group[num].getFirstName());
 									numberOfStudentsAlreadyInGroups++;
+									num++;
 								}
 							
 						}
@@ -71,4 +80,20 @@ public class CreateGroups
 					groupNumber++;
 				}
 		}
+
+		public static void fillInPreviousPartnerArray(Student[] studentsInGroup, ArrayList<Student> studentRoster)
+		{
+			for (Student s: studentsInGroup)
+				{
+					Student[] studentsNotIncludingHimself = new Student[studentsInGroup.length - 1];
+					
+					for (Student st: studentsInGroup) // SUPPOSED TO ADD ALL STUDENTS BESIDES HIMSELF!
+						{
+							
+						}
+					
+					studentRoster.get(studentRoster.indexOf(s)).setPreviousPartners(previousPartners);;
+				}
+		}
+		
 	}
