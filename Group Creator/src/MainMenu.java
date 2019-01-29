@@ -15,20 +15,7 @@ public class MainMenu
 		public static void greeting()
 		{
 			String[] title = {"G","R","O","U","P"," ","C","R","E","A","T","O","R"};
-			
-			for (String letter: title)
-				{
-					try
-						{
-							System.out.print(letter + " ");
-							Thread.sleep(150);
-						} 
-					catch (InterruptedException e)
-						{
-							e.printStackTrace();
-						}
-				}
-			System.out.println(" ");
+			dramaticPrintOut(150,title);
 		}
 		
 		public static ArrayList<Student> fillArrayList() throws IOException
@@ -53,18 +40,7 @@ public class MainMenu
 			while (choosing)
 				{
 					String[] options = {"[1] Generate New Groups","[2] Input Previous Group(s)","[3] Leave"};
-					for (String o: options)
-						{
-							try
-								{
-									Thread.sleep(300);
-									System.out.println(o);
-								} 
-							catch (InterruptedException e)
-								{
-									e.printStackTrace();
-								}
-						}
+					dramaticPrintOut(300, options);
 					Scanner userInput = new Scanner(System.in);
 					int userChoice = userInput.nextInt();
 					
@@ -89,24 +65,29 @@ public class MainMenu
 						default:
 								{
 									String[] error = {"T","R","Y"," ","A","G","A","I","N","!"};
-									for (String letter: error)
-										{
-											try
-												{
-													System.err.print(letter + " ");
-													Thread.sleep(150);
-												} 
-											catch (InterruptedException e)
-												{
-													e.printStackTrace();
-												}
-										}
-									System.out.println(" ");
+									dramaticPrintOut(150, error);
 									break;
 								}
 					}
 					
 				}
 			
+		}
+		
+		public static void dramaticPrintOut(int numberOfMilliseconds, String[] text)
+		{
+			for (String letter: text)
+				{
+					try
+						{
+							System.out.print(letter + " ");
+							Thread.sleep(numberOfMilliseconds);
+						} 
+					catch (InterruptedException e)
+						{
+							e.printStackTrace();
+						}
+				}
+			System.out.println(" ");
 		}
 	}
