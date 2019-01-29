@@ -54,8 +54,6 @@ public class CreateGroups
 									numberOfStudentsAlreadyInGroups++;
 									num++;
 								}
-							
-							fillInPreviousPartnerArray(group);
 						}
 					
 					// This just creates the regular groups
@@ -79,20 +77,33 @@ public class CreateGroups
 					System.out.println("");
 					groupNumber++;
 				}
+			
+			for (Student[] group : groups)
+				{
+					for (Student s: group)
+						{
+							fillInPreviousPartnerArray(group, studentRoster, s);
+						}
+				}
 		}
 
-		public static void fillInPreviousPartnerArray(Student[] studentsInGroup, ArrayList<Student> studentRoster)
+		public static void fillInPreviousPartnerArray(Student[] studentsInGroup, ArrayList<Student> studentRoster, Student target)
 		{
 			for (Student s: studentsInGroup)
 				{
 					Student[] studentsNotIncludingHimself = new Student[studentsInGroup.length - 1];
 					
+					int i = 0;
 					for (Student st: studentsInGroup) // SUPPOSED TO ADD ALL STUDENTS BESIDES HIMSELF!
 						{
-							
+							if (!st.equals(target))
+								{
+									studentsNotIncludingHimself[i] = st;
+								}
+							i++;
 						}
 					
-					studentRoster.get(studentRoster.indexOf(s)).setPreviousPartners(previousPartners);;
+					studentRoster.get(studentRoster.indexOf(s)).setPreviousPartners(studentsNotIncludingHimself);;
 				}
 		}
 		

@@ -4,10 +4,10 @@ public class Student
 	{
 		private String firstName;
 		private String lastName;
-		private ArrayList<String> previousPartners;
+		private Student[] previousPartners;
 		private boolean alreadyInGroup = false;
 		
-		public Student(String f, String l, ArrayList<String> p)
+		public Student(String f, String l, Student[] p)
 		{
 			firstName = f;
 			lastName = l;
@@ -18,7 +18,6 @@ public class Student
 		{
 			firstName = f;
 			lastName = l;
-			previousPartners = new ArrayList<>();
 		}
 
 		public String getFirstName()
@@ -41,12 +40,12 @@ public class Student
 				this.lastName = lastName;
 			}
 
-		public ArrayList<String> getPreviousPartners()
+		public Student[] getPreviousPartners()
 			{
 				return previousPartners;
 			}
 
-		public void setPreviousPartners(ArrayList<String> previousPartners)
+		public void setPreviousPartners(Student[] previousPartners)
 			{
 				this.previousPartners = previousPartners;
 			}
